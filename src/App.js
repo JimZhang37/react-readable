@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import getAll from './utils/api'
+import { getCP, getCategories} from './utils/api'
 import './App.css';
 import Posts from './components/posts';
 
@@ -7,9 +7,10 @@ import Posts from './components/posts';
 
 function App() {
     const [posts, setPosts] = useState()
+    const [tem, setTem] = useState()
     useEffect(()=>{
 
-        getAll().then((it)=>setPosts(it))
+        getCP().then(([res1, res2])=>console.log(res1,res2))
         
     }, [])
     
