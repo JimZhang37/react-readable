@@ -1,0 +1,15 @@
+li {
+    text-align: center;
+    margin: 5px 0px;
+}
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0px;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    
+}
