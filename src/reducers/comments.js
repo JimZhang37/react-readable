@@ -1,9 +1,9 @@
-import {RECEIVE_DATA} from '../actions/shared'
+import {RECEIVE_COMMENTS} from '../actions/comments'
 
 
 export default function comments(state={}, action){
     switch(action.type){
-        case RECEIVE_DATA:
+        case RECEIVE_COMMENTS:
             return {
                 ...state,
                 ...action.comments

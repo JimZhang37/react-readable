@@ -11,5 +11,12 @@ ul {
 .posts {
     display: flex;
     flex-direction: column;
-    
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M8.16 11.411l7.13 10.175c.297.422.903.541 1.356.265a.947.947 0 0 0 .292-.276l6.91-10.175c.29-.425.153-.99-.304-1.259A1.033 1.033 0 0 0 23.02 10H8.98c-.542 0-.98.409-.98.912 0 .178.055.351.16.5z'%3E%3C/path%3E%3C/svg%3E") right center no-repeat;
+    padding: 1em 3em 1em 1em;
+    font-size: 1em;
 }

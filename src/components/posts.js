@@ -1,7 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Post from './post'
+import {connect} from 'react-redux'
 import '../stylesheets/posts.css'
-function Posts({ posts }) {
+import {handleReceiveComments} from '../actions/comments'
+function Posts({ posts,comments,dispatch }) {
+    useEffect(()=>{
+        posts.forEach(element => {
+            dispatch(handleReceiveComments(element.id))
+        });
+    },[posts])
+
     const [sort, setSort] = useState('time')
     if (sort ==='time'){
         posts.sort((a,b)=>b.timestamp - a.timestamp)
@@ -29,4 +37,9 @@ function Posts({ posts }) {
 
 }
 
-export default Posts
+function mapStateToProps({ comments }) {
+    return {
+        comments
+    }
+}
+export default connect(mapStateToProps)(Posts);

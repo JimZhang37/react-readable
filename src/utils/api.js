@@ -63,13 +63,13 @@ async function incrementPostCommentCounter() {
 }
 
 //Comments
-async function getComment() {
+async function getComments() {
 
 }
+export const getCommentsByParent = (postId) =>
+    axios.get(`/posts/${postId}/comments`, { headers })
+    .then((res) => res.data)
 
-async function getCommentByParent() {
-
-}
 
 async function addComment() {
 
