@@ -3,7 +3,6 @@ import Post from './post'
 import '../stylesheets/posts.css'
 function Posts({ posts }) {
     const [sort, setSort] = useState('time')
-    console.log(posts)
     if (sort ==='time'){
         posts.sort((a,b)=>b.timestamp - a.timestamp)
     }

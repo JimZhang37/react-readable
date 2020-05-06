@@ -6,7 +6,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 
 function Post({post}){
     const {title, author, timestamp, category, voteScore, commentCount} = post
-    console.log(timestamp)
+    const time = new Date(timestamp).toString()
     return (
         <div className='post'>
             <div className='post-vote'>
@@ -18,7 +18,7 @@ function Post({post}){
                 <div className='post-title'>{title}</div>
                 <div className='post-author'>{author}</div>
                 <div className='post-category'>{category}</div>
-                <div className='timestamp'>{timestamp}</div>
+                <div className='timestamp'>{time}</div>
             </div>
             <div className='post-comments'>
                 <CommentIcon />

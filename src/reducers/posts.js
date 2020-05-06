@@ -1,4 +1,4 @@
-
+import {RECEIVE_DATA} from '../actions/shared'
 
 export default function posts(state={}, action){
     switch(action.type){

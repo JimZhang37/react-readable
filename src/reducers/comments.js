@@ -1,3 +1,4 @@
+import {RECEIVE_DATA} from '../actions/shared'
 
 
 export default function comments(state={}, action){
