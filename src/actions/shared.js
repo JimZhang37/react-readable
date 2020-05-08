@@ -15,7 +15,13 @@ export function handleReceiveData() {
     return (dispatch) => {
         return getCP().then(([categories, posts]) => {
             console.log('handleReceiveData', categories, posts)
-            dispatch(receiveData({ categories, posts }))
+            const postsObj = {}
+            posts.forEach((post)=>{postsObj[post.id]=post})
+            const catsObj = {}
+            categories.categories.forEach((it)=>{
+                catsObj[it.name] = it
+            })
+            dispatch(receiveData({ categories:catsObj, posts:postsObj }))
         })
     }
 }

@@ -14,7 +14,11 @@ export default function posts(state={}, action){
             }
         case REMOVE_POST:
             const newState = Object.values(state).filter((it)=> it.id != action.post.id)
-            return Object.assign({}, newState)
+            const s = {}
+            newState.forEach(it=>{
+                s[it.id] = it
+            })
+            return s
             
         default:
             return state
