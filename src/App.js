@@ -4,16 +4,24 @@ import './App.css';
 import Posts from './components/posts';
 import { connect } from 'react-redux'
 import { handleReceiveData } from './actions/shared'
-
+import { Route, BrowserRouter as Router } from 'react-router-dom'
+import NewPost from './components/NewPost';
+import Nav from './components/Nav'
 function App({ categories, posts, dispatch }) {
 
     useEffect(() => {
         dispatch(handleReceiveData())
     }, [])
     return (
-        Object.keys(posts).length !==0 ?
-            <Posts posts={Object.values(posts)} />
-            : ''
+        <Router>
+            <Nav />
+            {Object.keys(posts).length !== 0 ?
+                <Route exact path='/'><Posts posts={Object.values(posts)} /></Route>
+
+                : ''}
+            <Route path='/new' component={NewPost}></Route>
+        </Router>
+
     );
 }
 

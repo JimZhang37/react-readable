@@ -42,9 +42,10 @@ async function getPostsByCategory() {
 
 }
 
-async function addPost() {
 
-}
+export const addPostAPI= (post)=>
+    axios.post('/posts', post, {headers})
+    .then((res)=> res.data)
 
 async function changePostVote() {
 
