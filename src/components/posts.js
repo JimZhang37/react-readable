@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Post from './post'
 import {connect} from 'react-redux'
 import '../stylesheets/posts.css'
-import {handleReceiveComments} from '../actions/comments'
+
 function Posts({ posts,comments,dispatch }) {
     // useEffect(()=>{
     //     posts.forEach(element => {

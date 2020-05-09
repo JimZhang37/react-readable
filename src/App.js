@@ -7,6 +7,7 @@ import { handleReceiveData } from './actions/shared'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import NewPost from './components/NewPost';
 import Nav from './components/Nav'
+import Comments from './components/Comments'
 function App({ categories, posts, dispatch }) {
 
     useEffect(() => {
@@ -20,6 +21,7 @@ function App({ categories, posts, dispatch }) {
 
                 : ''}
             <Route path='/new' component={NewPost}></Route>
+            <Route path='/posts/:postId' component={Comments}></Route>
         </Router>
 
     );
