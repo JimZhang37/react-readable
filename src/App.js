@@ -14,6 +14,8 @@ function App({ categories, posts, dispatch }) {
     useEffect(() => {
         dispatch(handleReceiveData())
     }, [])
+    if (Object.keys(posts).length === 0) { return <div></div> }
+
     return (
         <Router>
             <Nav />
