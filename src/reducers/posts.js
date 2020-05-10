@@ -1,7 +1,8 @@
-import {RECEIVE_DATA} from '../actions/shared'
-import {ADD_POST, REMOVE_POST} from '../actions/posts'
-export default function posts(state={}, action){
-    switch(action.type){
+import { RECEIVE_DATA } from '../actions/shared'
+import { ADD_POST, REMOVE_POST } from '../actions/posts'
+import { ADD_COMMENT, REMOVE_COMMENT } from '../actions/comments'
+export default function posts(state = {}, action) {
+    switch (action.type) {
         case RECEIVE_DATA:
             return {
                 ...state,
@@ -13,13 +14,28 @@ export default function posts(state={}, action){
                 [action.post.id]: action.post
             }
         case REMOVE_POST:
-            const newState = Object.values(state).filter((it)=> it.id != action.post.id)
+            const newState = Object.values(state).filter((it) => it.id != action.post.id)
             const s = {}
-            newState.forEach(it=>{
+            newState.forEach(it => {
                 s[it.id] = it
             })
             return s
-            
+        case ADD_COMMENT:
+            return {
+                ...state,
+                [action.comment.parentId]: {
+                    ...state[action.comment.parentId],
+                    commentCount: state[action.comment.parentId].commentCount + 1
+                }
+            }
+        case REMOVE_COMMENT:
+            return {
+                ...state,
+                [action.comment.parentId]: {
+                    ...state[action.comment.parentId],
+                    commentCount: state[action.comment.parentId].commentCount - 1
+                }
+            }
         default:
             return state
     }
