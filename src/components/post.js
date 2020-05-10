@@ -3,12 +3,12 @@ import '../stylesheets/post.css'
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import CommentIcon from '@material-ui/icons/Comment';
-
+import {Link} from 'react-router-dom'
 function Post({post}){
-    const {title, author, timestamp, category, voteScore, commentCount} = post
+    const {id, title, author, timestamp, category, voteScore, commentCount} = post
     const time = new Date(timestamp).toString()
     return (
-        <div className='post'>
+        <Link to={`/posts/${id}`} className='post'>
             <div className='post-vote'>
                 <ArrowDropUpIcon className='post-vote-icon' />
                 <p>{voteScore}</p>
@@ -24,7 +24,7 @@ function Post({post}){
                 <CommentIcon />
                 {commentCount}
             </div>
-        </div>
+        </Link>
     )
 }
 

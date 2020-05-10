@@ -14,19 +14,19 @@ const headers = {
     'Authorization': token
 }
 
-export const getCP = () => 
-     axios.all(
+export const getCP = () =>
+    axios.all(
         [
             axios.get('/categories', { headers }),
             axios.get('/posts', { headers })
         ]
     ).then(axios.spread((obj1, obj2) =>
-            ([obj1.data, obj2.data])))
+        ([obj1.data, obj2.data])))
 
 
 export const getCategories = () =>
     axios.get('/categories', { headers })
-    .then((res) => res.data)
+        .then((res) => res.data)
 
 //Post
 export const getPosts = () =>
@@ -43,9 +43,9 @@ async function getPostsByCategory() {
 }
 
 
-export const addPostAPI= (post)=>
-    axios.post('/posts', post, {headers})
-    .then((res)=> res.data)
+export const addPostAPI = (post) =>
+    axios.post('/posts', post, { headers })
+        .then((res) => res.data)
 
 async function changePostVote() {
 
@@ -69,12 +69,12 @@ async function getComments() {
 }
 export const getCommentsByParent = (postId) =>
     axios.get(`/posts/${postId}/comments`, { headers })
-    .then((res) => res.data)
+        .then((res) => res.data)
 
 
-async function addComment() {
-
-}
+export const addCommentApi = (comment) =>
+    axios.post('/comments', comment, { headers })
+        .then((res) => res.data)
 
 async function voteComment() {
 
@@ -91,3 +91,10 @@ async function disableComment() {
 async function editComment() {
 
 }
+
+export function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }

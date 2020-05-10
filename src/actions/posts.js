@@ -1,4 +1,4 @@
-import { addPostAPI } from '../utils/api'
+import { addPostAPI, uuidv4 } from '../utils/api'
 
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
@@ -40,9 +40,3 @@ export function handleAddPost(title, body, author, category) {
     }
 }
 
-function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
-  }

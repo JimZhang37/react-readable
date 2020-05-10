@@ -8,6 +8,7 @@ import { Route, BrowserRouter as Router } from 'react-router-dom'
 import NewPost from './components/NewPost';
 import Nav from './components/Nav'
 import Comments from './components/Comments'
+import PostContainer from './components/PostContainer'
 function App({ categories, posts, dispatch }) {
 
     useEffect(() => {
@@ -21,7 +22,7 @@ function App({ categories, posts, dispatch }) {
 
                 : ''}
             <Route path='/new' component={NewPost}></Route>
-            <Route path='/posts/:postId' component={Comments}></Route>
+            <Route path='/posts/:postId' component={PostContainer}></Route>
         </Router>
 
     );
