@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import '../stylesheets/comment.css'
+import { connect } from 'react-redux';
+import { handleUpvoteComment, handleDownvoteComment } from '../actions/comments';
 
 class Comment extends Component {
     constructor(props){
@@ -10,15 +12,16 @@ class Comment extends Component {
     }
 
     render() {
-        const {voteScore, body, author, timestamp} = this.props.comment
+        const {id, voteScore, body, author, timestamp} = this.props.comment
+        const {dispatch} = this.props
         const time = new Date(timestamp).toString()
         return (
 
             <div className='comment'>
                 <div className='comment-vote'>
-                    <ArrowDropUpIcon className='comment-vote-icon' />
+                    <ArrowDropUpIcon onClick={(e)=>{e.preventDefault(); dispatch(handleUpvoteComment(id))}} className='comment-vote-icon' />
                     <p>{voteScore}</p>
-                    <ArrowDropDownIcon className='comment-vote-icon' />
+                    <ArrowDropDownIcon  onClick={(e)=>{e.preventDefault(); dispatch(handleDownvoteComment(id))}} className='comment-vote-icon' />
                 </div>
                 <div className='comment-info'>
                     <div className='comment-body'>{body}</div>
@@ -32,4 +35,4 @@ class Comment extends Component {
     }
 }
 
-export default Comment
+export default connect()( Comment)

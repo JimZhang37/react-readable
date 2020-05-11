@@ -4,15 +4,18 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import CommentIcon from '@material-ui/icons/Comment';
 import {Link} from 'react-router-dom'
-function Post({post}){
+import {handleUpvotePost, handleDownvotePost} from '../actions/posts'
+import {connect} from 'react-redux'
+
+function Post({post, dispatch}){
     const {id, title, author, timestamp, category, voteScore, commentCount} = post
     const time = new Date(timestamp).toString()
     return (
         <Link to={`/posts/${id}`} className='post'>
             <div className='post-vote'>
-                <ArrowDropUpIcon className='post-vote-icon' />
+                <ArrowDropUpIcon onClick={(e)=>{e.preventDefault(); dispatch(handleUpvotePost(id))}} className='post-vote-icon' />
                 <p>{voteScore}</p>
-                <ArrowDropDownIcon className='post-vote-icon'/>
+                <ArrowDropDownIcon onClick={(e)=>{e.preventDefault(); dispatch(handleDownvotePost(id))}} className='post-vote-icon'/>
             </div>
             <div className='post-info'>
                 <div className='post-title'>{title}</div>
@@ -28,4 +31,5 @@ function Post({post}){
     )
 }
 
-export default Post
+
+export default connect()(Post)

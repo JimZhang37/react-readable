@@ -47,9 +47,10 @@ export const addPostAPI = (post) =>
     axios.post('/posts', post, { headers })
         .then((res) => res.data)
 
-async function changePostVote() {
 
-}
+export const changePostVote = (postId, option) =>
+    axios.post(`/posts/${postId}`, { option }, { headers })
+        .then((res) => res.data)
 
 async function disablePost() {
 
@@ -76,9 +77,10 @@ export const addCommentApi = (comment) =>
     axios.post('/comments', comment, { headers })
         .then((res) => res.data)
 
-async function voteComment() {
+export const changeCommentVote = (commentId, option) =>
+    axios.post(`/comments/${commentId}`, { option }, { headers })
+        .then((res) => res.data)
 
-}
 
 async function disableCommentByParent() {
 
@@ -93,8 +95,8 @@ async function editComment() {
 }
 
 export function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
     });
-  }
+}
