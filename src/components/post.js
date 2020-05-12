@@ -13,7 +13,7 @@ function Post({ post, dispatch }) {
     const { id, title, author, timestamp, category, voteScore, commentCount } = post
     const time = new Date(timestamp).toString()
     return (
-        <Link to={`/posts/${id}`} className='post'>
+        <Link to={`/${category}/${id}`} className='post'>
             <div className='post-vote'>
                 <ArrowDropUpIcon onClick={(e) => { e.preventDefault(); dispatch(handleUpvotePost(id)) }} className='post-vote-icon' />
                 <p>{voteScore}</p>

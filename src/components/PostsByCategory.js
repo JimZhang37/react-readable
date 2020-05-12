@@ -1,18 +1,21 @@
 import React, { useEffect , useState} from 'react'
 import Post from './post'
 import {useDispatch, useSelector} from 'react-redux'
-import {handleGetPostsByCategory} from '../actions/posts'
 import {useParams} from 'react-router-dom'
 import '../stylesheets/posts.css'
-import { handleGetPostsByCategoryAndCategories } from '../actions/shared'
+import { handleGetPostsByCategoryAndCategories, handleReceiveData } from '../actions/shared'
 
 function PostsByCategory() {
     const {category} = useParams()
     const dispatch = useDispatch()
     useEffect(() => {
+        category
+        ?
         dispatch(handleGetPostsByCategoryAndCategories(category))
+        :
+        dispatch(handleReceiveData())
     }, [category])
-    const posts = useSelector(state=>Object.values(state.posts).filter(it=>it.category ===category))
+    const posts = useSelector(state=>category ? Object.values(state.posts).filter(it=>it.category ===category):Object.values(state.posts))
     const [sort, setSort] = useState('time')
 
     if(Object.keys(posts).length === 0){

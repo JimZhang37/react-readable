@@ -1,45 +1,26 @@
-import React, { useEffect , useState} from 'react'
-import Post from './post'
-import { useDispatch, useSelector} from 'react-redux'
-import {handleReceiveData} from '../actions/shared'
-import '../stylesheets/posts.css'
+import React, { useState } from 'react'
+import PostsByCategory from './PostsByCategory'
+import NewPost from './NewPost'
+function Posts(props) {
 
-function Posts() {
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(handleReceiveData())
-    }, [])
-    const posts = useSelector(state=>Object.values(state.posts))
-    const [sort, setSort] = useState('time')
+    const [newPost, changeNew] = useState(false)
 
-    if(Object.keys(posts).length === 0){
-        return (<div></div>)
-    }
-    if (sort ==='time'){
-        posts.sort((a,b)=>b.timestamp - a.timestamp)
-    }
-    else {
-        posts.sort((a,b)=>b.voteScore - a.voteScore)
-    }
-    
     return (
-        <div className='posts'>
-            <select value={sort} onChange={(e) => setSort(e.target.value)} >
-                <option value="time">Sort by time</option>
-                <option value="vote">Sort by voting</option>
-            </select>
-            <ul>
-                {posts.map(it =>
-                    (<li key={it.id}>
-                        <Post post={it} />
-                    </li>)
-                )}
-            </ul>
-        </div>
-    )
 
+        <div>
+            <div>
+                <button onClick={(e)=>{e.preventDefault();changeNew(!newPost)}}>New Post</button>
+            </div>
+            <div>
+                {newPost ?
+                    <NewPost change={changeNew} />
+                    :
+                    <PostsByCategory />}
+            </div>
+
+        </div>)
 
 }
 
 
-export default Posts;
+export default Posts

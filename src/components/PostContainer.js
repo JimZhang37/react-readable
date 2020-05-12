@@ -6,7 +6,7 @@ import NewComment from './NewComment';
 import { handleGetPost } from '../actions/posts';
 
 function PostContainer(){
-    const {postId} = useParams();
+    const {category, postId} = useParams();
 
     const dispatch = useDispatch()
     useEffect(() => {

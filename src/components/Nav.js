@@ -7,7 +7,6 @@ export default function Nav(){
 
     return (
         <div>
-            <NavLink to='/new/post' > New Post</NavLink>
             <NavLink to='/' >Home</NavLink>
             {categories.length >0?categories.map(it=><NavLink to={`/${it.name}`} key={it.name}>{it.name}</NavLink>):''}
 

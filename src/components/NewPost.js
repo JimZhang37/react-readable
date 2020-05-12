@@ -11,7 +11,6 @@ class NewPost extends Component {
             text: '',
             category: '',
             author: '',
-            toHome: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -25,7 +24,7 @@ class NewPost extends Component {
         event.preventDefault()
         const { title, text, author, category } = this.state
         this.props.dispatch(handleAddPost(title, text, author, category))
-        this.setState((state) => ({ toHome: !state.toHome }))
+        this.props.change(false)
     }
 
     render() {
