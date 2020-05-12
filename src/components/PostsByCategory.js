@@ -11,8 +11,8 @@ function PostsByCategory() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(handleGetPostsByCategoryAndCategories(category))
-    }, [])
-    const posts = useSelector(state=>Object.values(state.posts))
+    }, [category])
+    const posts = useSelector(state=>Object.values(state.posts).filter(it=>it.category ===category))
     const [sort, setSort] = useState('time')
 
     if(Object.keys(posts).length === 0){

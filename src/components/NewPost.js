@@ -21,20 +21,19 @@ class NewPost extends Component {
         this.setState({ text: event.target.value })
     }
 
-
-
     handleSubmit(event) {
         event.preventDefault()
         const { title, text, author, category } = this.state
         this.props.dispatch(handleAddPost(title, text, author, category))
         this.setState((state) => ({ toHome: !state.toHome }))
-
     }
 
     render() {
         if (this.state.toHome) {
             return <Redirect to='/' />
         }
+        const {categories}= this.props
+
         return (
             <div>
                 <h3 className='center'>Compose New Post</h3>
@@ -53,8 +52,8 @@ class NewPost extends Component {
                         <input type="text" value={this.state.author} onChange={(e) => { this.setState({ author: e.target.value }) }} />
                     </label>
                     <select value={this.state.category} onChange={(e)=>this.setState({category:e.target.value})}>
-                        <option value='react'>react</option>
-                        <option value='redux'>redux</option>
+
+                        {categories.map(it=><option value={it.name} key={it.name}>{it.name}</option>)}
                     </select>
                     <button
                         className='btn'
@@ -70,5 +69,9 @@ class NewPost extends Component {
 
 }
 
-
-export default connect()(NewPost)
+const mapStateToProps = ({categories}) => {
+    return {
+      categories: Object.values(categories)
+    }
+  }
+export default connect(mapStateToProps)(NewPost)

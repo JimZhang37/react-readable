@@ -12,9 +12,10 @@ function App() {
         <Router>
             <Nav />
             <Route exact path='/'><Posts /></Route>
-            <Route path='/:category'><PostsByCategory /></Route>
-            <Route path='/new' component={NewPost}></Route>
+            <Route path='/new/post' component={NewPost}></Route>
             <Route path='/posts/:postId' component={PostContainer}></Route>
+            <Route exact path='/:category'><PostsByCategory /></Route>
+
         </Router>
     );
 }

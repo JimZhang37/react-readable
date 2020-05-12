@@ -2,7 +2,7 @@ import { getCP, getPostsByCategoryAndCategoriesAPI } from '../utils/api'
 
 
 export const RECEIVE_DATA = 'RECEIVE_DATA'
-export const GET_POSTS_BY_CATEGORY_AND_CATEGORY = 'GET_POSTS_BY_CATEGORY_AND_CATEGORY'
+export const GET_POSTS_BY_CATEGORY_AND_CATEGORY = 'GET_POSTS_BY_CATEGORY_AND_GET_CATEGORIES'
 
 function receiveData({ categories, posts }) {
     return {

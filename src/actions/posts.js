@@ -1,4 +1,4 @@
-import { addPostAPI, uuidv4, changePostVote, disablePost, getPostAPI, getPostsByCategoryAPI } from '../utils/api'
+import { addPostAPI, uuidv4, changePostVote, disablePost, getPostAPI } from '../utils/api'
 
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
