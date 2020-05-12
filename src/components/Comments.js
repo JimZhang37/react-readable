@@ -1,10 +1,11 @@
-import React, { Component, useEffect } from 'react'
+import React, {  useEffect } from 'react'
 import Comment from './Comment'
-import { connect } from 'react-redux'
+import { connect , useDispatch} from 'react-redux'
 import { handleReceiveComments } from '../actions/comments'
 import {useParams} from 'react-router-dom'
-function Comments({dispatch, comments}) {
+function Comments({ comments}) {
     let { postId } = useParams();
+    const dispatch = useDispatch()
     useEffect(() => {
         dispatch(handleReceiveComments(postId))
 

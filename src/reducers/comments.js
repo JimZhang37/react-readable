@@ -37,6 +37,7 @@ export default function comments(state={}, action){
                     voteScore: state[action.commentId].voteScore - 1
                 }
             }
+
         default:
             return state
     }

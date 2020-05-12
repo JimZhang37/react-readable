@@ -6,7 +6,7 @@ import NewComment from './NewComment';
 
 function PostContainer({posts}){
     const {postId} = useParams();
-    console.log( 'posts', posts)
+    // console.log( 'posts', posts)
     const {id, timestamp, title, body, voteScore, author} = posts[postId]
     return (
 
@@ -23,7 +23,6 @@ function PostContainer({posts}){
 }
 
 function mapStateToProps({  posts }) {
-    console.log('p', posts)
     return {
 
         posts

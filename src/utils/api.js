@@ -1,6 +1,6 @@
-import { getAll } from './posts'
+
 import axios from 'axios'
-export default getAll
+
 const api = "https://reactnd-books-api.udacity.com"
 
 
@@ -52,9 +52,11 @@ export const changePostVote = (postId, option) =>
     axios.post(`/posts/${postId}`, { option }, { headers })
         .then((res) => res.data)
 
-async function disablePost() {
 
-}
+
+export const disablePost = (postId) =>
+    axios.delete(`/posts/${postId}`, { headers })
+        .then((res) => res.data)
 
 async function editPost() {
 

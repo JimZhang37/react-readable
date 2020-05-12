@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect , useState} from 'react'
 import Post from './post'
-import {connect} from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
+import {handleReceiveData} from '../actions/shared'
 import '../stylesheets/posts.css'
 
-function Posts({ posts,comments,dispatch }) {
-    // useEffect(()=>{
-    //     posts.forEach(element => {
-    //         dispatch(handleReceiveComments(element.id))
-    //     });
-    // },[posts])
-
+function Posts() {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(handleReceiveData())
+    }, [])
+    const posts = useSelector(state=>Object.values(state.posts))
     const [sort, setSort] = useState('time')
+
+    if(Object.keys(posts).length === 0){
+        return (<div></div>)
+    }
     if (sort ==='time'){
         posts.sort((a,b)=>b.timestamp - a.timestamp)
     }
@@ -37,9 +41,5 @@ function Posts({ posts,comments,dispatch }) {
 
 }
 
-function mapStateToProps({ comments }) {
-    return {
-        comments
-    }
-}
-export default connect(mapStateToProps)(Posts);
+
+export default Posts;

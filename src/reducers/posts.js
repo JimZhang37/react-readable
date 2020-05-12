@@ -14,7 +14,7 @@ export default function posts(state = {}, action) {
                 [action.post.id]: action.post
             }
         case REMOVE_POST:
-            const newState = Object.values(state).filter((it) => it.id != action.post.id)
+            const newState = Object.values(state).filter((it) => it.id !== action.post.id)
             const s = {}
             newState.forEach(it => {
                 s[it.id] = it

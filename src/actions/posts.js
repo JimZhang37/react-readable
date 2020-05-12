@@ -1,4 +1,4 @@
-import { addPostAPI, uuidv4, changePostVote } from '../utils/api'
+import { addPostAPI, uuidv4, changePostVote, disablePost } from '../utils/api'
 
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
@@ -62,10 +62,10 @@ export function handleUpvotePost(postId) {
         dispatch(upvotePost(postId))
         return changePostVote(postId, 'upVote')
             .then((res) => {
-                console.log('upvote successfully', res)
+                // console.log('upvote successfully', res)
             })
             .catch((e) => {
-                console.log('upvote failed')
+                // console.log('upvote failed')
                 dispatch(downvotePost(postId))
             })
     }
@@ -77,11 +77,24 @@ export function handleDownvotePost(postId) {
         dispatch(downvotePost(postId))
         return changePostVote(postId, 'downVote')
             .then((res) => {
-                console.log('downvote successfully', res)
+                // console.log('downvote successfully', res)
             })
             .catch((e) => {
-                console.log('downvote failed')
+                // console.log('downvote failed')
                 dispatch(upvotePost(postId))
             })
+    }
+}
+
+export function handleRemovePost(post) {
+    return (dispatch) => {
+        dispatch(removePost(post))
+        return disablePost(post.id).then(
+            (res) => {
+                //do nothing
+            }
+        ).catch((e) => {
+            dispatch(addPost(post))
+        })
     }
 }
