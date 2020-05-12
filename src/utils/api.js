@@ -23,6 +23,14 @@ export const getCP = () =>
     ).then(axios.spread((obj1, obj2) =>
         ([obj1.data, obj2.data])))
 
+export const getPostsByCategoryAndCategoriesAPI = (category) =>
+    axios.all(
+        [
+            axios.get('/categories', { headers }),
+            axios.get(`/${category}/posts`, { headers })
+        ]
+    ).then(axios.spread((obj1, obj2) =>
+        ([obj1.data, obj2.data])))
 
 export const getCategories = () =>
     axios.get('/categories', { headers })
@@ -38,14 +46,14 @@ export const getPosts = () =>
         res.data)
 
 
-async function getPostsByCategory() {
-
-}
+export const getPostsByCategoryAPI = (category) =>
+    axios.get(`/${category}/posts`, { headers })
+        .then((res) => res.data)
 
 export const getPostAPI = (postId) =>
     axios.get(`/posts/${postId}`, { headers })
         .then((res) => res.data)
-        
+
 export const addPostAPI = (post) =>
     axios.post('/posts', post, { headers })
         .then((res) => res.data)

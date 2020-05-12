@@ -1,4 +1,4 @@
-import { addPostAPI, uuidv4, changePostVote, disablePost, getPostAPI } from '../utils/api'
+import { addPostAPI, uuidv4, changePostVote, disablePost, getPostAPI, getPostsByCategoryAPI } from '../utils/api'
 
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
@@ -34,12 +34,14 @@ function downvotePost(postId) {
     }
 }
 
-function getPost(post){
+function getPost(post) {
     return {
         type: GET_POST,
         post
     }
 }
+
+
 
 export function handleAddPost(title, body, author, category) {
     const post = {
@@ -107,14 +109,13 @@ export function handleRemovePost(post) {
     }
 }
 
-export function handleGetPost(postId){
-    return (dispatch)=>{
-        return getPostAPI(postId).then((res)=>{
-            console.log('abc')
+export function handleGetPost(postId) {
+    return (dispatch) => {
+        return getPostAPI(postId).then((res) => {
             dispatch(getPost(res))
         }
-            
+
         )
-        .catch((e)=>console.log('getPost failed'))
+            .catch((e) => console.log('getPost failed'))
     }
 }

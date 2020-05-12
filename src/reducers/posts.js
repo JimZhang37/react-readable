@@ -1,9 +1,14 @@
-import { RECEIVE_DATA } from '../actions/shared'
+import { RECEIVE_DATA, GET_POSTS_BY_CATEGORY_AND_CATEGORY } from '../actions/shared'
 import { ADD_POST, REMOVE_POST, UPVOTE_POST, DOWNVOTE_POST, GET_POST } from '../actions/posts'
 import { ADD_COMMENT, REMOVE_COMMENT } from '../actions/comments'
 export default function posts(state = {}, action) {
     switch (action.type) {
         case RECEIVE_DATA:
+            return {
+                ...state,
+                ...action.posts
+            }
+        case GET_POSTS_BY_CATEGORY_AND_CATEGORY:
             return {
                 ...state,
                 ...action.posts
@@ -57,6 +62,7 @@ export default function posts(state = {}, action) {
                     voteScore: state[action.postId].voteScore - 1
                 }
             }
+
         default:
             return state
     }
