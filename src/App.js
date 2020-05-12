@@ -17,10 +17,7 @@ function App({  posts }) {
     return (
         <Router>
             <Nav />
-       
-            <Route exact path='/'><Posts  /></Route>
-
-              
+            <Route exact path='/'><Posts /></Route>
             <Route path='/new' component={NewPost}></Route>
             <Route path='/posts/:postId' component={PostContainer}></Route>
         </Router>

@@ -1,5 +1,5 @@
 import { RECEIVE_DATA } from '../actions/shared'
-import { ADD_POST, REMOVE_POST, UPVOTE_POST, DOWNVOTE_POST } from '../actions/posts'
+import { ADD_POST, REMOVE_POST, UPVOTE_POST, DOWNVOTE_POST, GET_POST } from '../actions/posts'
 import { ADD_COMMENT, REMOVE_COMMENT } from '../actions/comments'
 export default function posts(state = {}, action) {
     switch (action.type) {
@@ -9,6 +9,11 @@ export default function posts(state = {}, action) {
                 ...action.posts
             }
         case ADD_POST:
+            return {
+                ...state,
+                [action.post.id]: action.post
+            }
+        case GET_POST:
             return {
                 ...state,
                 [action.post.id]: action.post

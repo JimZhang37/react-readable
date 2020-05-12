@@ -1,9 +1,10 @@
-import { addPostAPI, uuidv4, changePostVote, disablePost } from '../utils/api'
+import { addPostAPI, uuidv4, changePostVote, disablePost, getPostAPI } from '../utils/api'
 
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const UPVOTE_POST = 'UPVOTE_POST'
 export const DOWNVOTE_POST = 'DOWNVOTE_POST'
+export const GET_POST = 'GET_POST'
 
 function addPost(post) {
     return {
@@ -30,6 +31,13 @@ function downvotePost(postId) {
     return {
         type: DOWNVOTE_POST,
         postId
+    }
+}
+
+function getPost(post){
+    return {
+        type: GET_POST,
+        post
     }
 }
 
@@ -96,5 +104,17 @@ export function handleRemovePost(post) {
         ).catch((e) => {
             dispatch(addPost(post))
         })
+    }
+}
+
+export function handleGetPost(postId){
+    return (dispatch)=>{
+        return getPostAPI(postId).then((res)=>{
+            console.log('abc')
+            dispatch(getPost(res))
+        }
+            
+        )
+        .catch((e)=>console.log('getPost failed'))
     }
 }

@@ -42,7 +42,10 @@ async function getPostsByCategory() {
 
 }
 
-
+export const getPostAPI = (postId) =>
+    axios.get(`/posts/${postId}`, { headers })
+        .then((res) => res.data)
+        
 export const addPostAPI = (post) =>
     axios.post('/posts', post, { headers })
         .then((res) => res.data)
