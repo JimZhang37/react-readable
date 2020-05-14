@@ -1,9 +1,10 @@
-import { getCommentsByParent, addCommentApi, uuidv4, changeCommentVote } from '../utils/api'
+import { getCommentsByParent, addCommentApi, uuidv4, changeCommentVote, disableCommentAPI } from '../utils/api'
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
-export const REMOVE_COMMENT = 'REMOVE_COMMENT'
+// export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const UPVOTE_COMMENT = 'UPVOTE_COMMENT'
 export const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT'
+export const DISABLE_COMMENT = 'DISABLE_COMMENT'
 
 export function receiveComments(comments) {
     return {
@@ -19,12 +20,12 @@ export function addComment(comment) {
     }
 }
 
-export function removeComment(comment) {
-    return {
-        type: REMOVE_COMMENT,
-        comment
-    }
-}
+// export function removeComment(comment) {
+//     return {
+//         type: REMOVE_COMMENT,
+//         comment
+//     }
+// }
 
 export function upvoteComment(commentId) {
     return {
@@ -37,6 +38,13 @@ export function downvoteComment(commentId) {
     return {
         type: DOWNVOTE_COMMENT,
         commentId
+    }
+}
+
+export function disableComment(comment) {
+    return {
+        type: DISABLE_COMMENT,
+        comment
     }
 }
 
@@ -63,14 +71,13 @@ export function handleAddComment(body, author, parentId) {
     }
     return (dispatch) => {
 
-        console.log('comment', comment)
         dispatch(addComment(comment))
 
         return addCommentApi(comment).then(() => {
-            console.log('success')
         })
             .catch(() => {
                 console.log('error')
+                dispatch(disableComment(comment.id))
             })
     }
 }
@@ -100,5 +107,13 @@ export function handleDownvoteComment(commentId) {
                 console.log('downvote failed')
                 dispatch(upvoteComment(commentId))
             })
+    }
+}
+
+export function handleDisableComment(comment) {
+    return (dispatch) => {
+        dispatch(disableComment(comment))
+        return disableCommentAPI(comment.id)
+            .catch((e) => dispatch(addComment(comment)))
     }
 }

@@ -71,8 +71,8 @@ export const disablePost = (postId) =>
 
 
 export const editPostAPI = (post) =>
-    axios.put(`/posts/${post.id}`,post, {headers})
-        .then((res)=> res.data)
+    axios.put(`/posts/${post.id}`, post, { headers })
+        .then((res) => res.data)
 async function incrementPostCommentCounter() {
 
 }
@@ -99,9 +99,9 @@ async function disableCommentByParent() {
 
 }
 
-async function disableComment() {
 
-}
+export const disableCommentAPI = (commentId) =>
+    axios.delete(`/comments/${commentId}`, {headers}).then((res) => res.data)
 
 async function editComment() {
 

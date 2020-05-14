@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import {useDispatch, useSelector } from 'react-redux';
 import Comments from './Comments'
@@ -13,6 +13,7 @@ function PostContainer(){
         dispatch(handleGetPost(postId))
     }, [postId])
     const post = useSelector(state=>state.posts[postId])
+    const [newComment, setNewComment] = useState(false)
     if(post ){
         const {id, timestamp, title, body, voteScore, author} = post
         return (
@@ -23,7 +24,9 @@ function PostContainer(){
                 <p>{author}</p>
                 <p>{body}</p>
                 <p>{timestamp}</p>
-                <NewComment postId={postId}/>
+                <button onClick={(e)=>{e.preventDefault(); setNewComment(!newComment)}}>New Comment</button>
+                {newComment? <NewComment postId={postId}/>:''}
+               
                 <Comments postId = {postId}/>
             </div>
         )

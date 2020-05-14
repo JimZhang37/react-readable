@@ -1,6 +1,6 @@
 import { RECEIVE_DATA, GET_POSTS_BY_CATEGORY_AND_CATEGORY } from '../actions/shared'
 import { ADD_POST, REMOVE_POST, UPVOTE_POST, DOWNVOTE_POST, GET_POST, EDIT_POST } from '../actions/posts'
-import { ADD_COMMENT, REMOVE_COMMENT } from '../actions/comments'
+import { ADD_COMMENT, DISABLE_COMMENT } from '../actions/comments'
 export default function posts(state = {}, action) {
     switch (action.type) {
         case RECEIVE_DATA:
@@ -38,7 +38,7 @@ export default function posts(state = {}, action) {
                     commentCount: state[action.comment.parentId].commentCount + 1
                 }
             }
-        case REMOVE_COMMENT:
+        case DISABLE_COMMENT:
             return {
                 ...state,
                 [action.comment.parentId]: {

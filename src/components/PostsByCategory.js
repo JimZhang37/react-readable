@@ -8,6 +8,8 @@ import { handleGetPostsByCategoryAndCategories, handleReceiveData } from '../act
 function PostsByCategory({changePostId, change}) {
     const {category} = useParams()
     const dispatch = useDispatch()
+    const posts = useSelector(state=>category ? Object.values(state.posts).filter(it=>it.category ===category):Object.values(state.posts))
+
     useEffect(() => {
         category
         ?
@@ -15,7 +17,6 @@ function PostsByCategory({changePostId, change}) {
         :
         dispatch(handleReceiveData())
     }, [category])
-    const posts = useSelector(state=>category ? Object.values(state.posts).filter(it=>it.category ===category):Object.values(state.posts))
     const [sort, setSort] = useState('time')
 
     if(Object.keys(posts).length === 0){

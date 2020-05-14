@@ -14,7 +14,6 @@ class NewComment extends Component {
     }
     handleSubmit(e) {
         e.preventDefault()
-        console.log('dispose, handle sumbit')
         this.props.dispatch(handleAddComment(this.state.body, this.state.author, this.props.postId))
         this.setState({body:'', author:''})
     }

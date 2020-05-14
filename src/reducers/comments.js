@@ -1,4 +1,4 @@
-import {RECEIVE_COMMENTS, ADD_COMMENT, REMOVE_COMMENT, UPVOTE_COMMENT, DOWNVOTE_COMMENT} from '../actions/comments'
+import {RECEIVE_COMMENTS, ADD_COMMENT, UPVOTE_COMMENT, DOWNVOTE_COMMENT, DISABLE_COMMENT} from '../actions/comments'
 
 
 export default function comments(state={}, action){
@@ -13,7 +13,7 @@ export default function comments(state={}, action){
                 ...state,
                 [action.comment.id]:action.comment
             }
-        case REMOVE_COMMENT:
+        case DISABLE_COMMENT:
             const newState = Object.values(state).filter(it=>it.id !==action.comment.id)
             const s = {}
             newState.forEach(it =>{

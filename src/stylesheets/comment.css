@@ -45,3 +45,8 @@
 }
 
 
+.comment-actions {
+    display: flex;
+    flex-direction: column;
+    
+}
