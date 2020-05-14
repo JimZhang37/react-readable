@@ -6,11 +6,13 @@ import '../stylesheets/newPost.css'
 class NewPost extends Component {
     constructor(props) {
         super(props)
+        const {post} = props
         this.state = {
-            title: '',
-            text: '',
-            category: '',
-            author: '',
+            edit:post?true:false,
+            title: post?post.title:'',
+            text: post?post.body:'',
+            category: post?post.category:'',
+            author: post?post.author:'',
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -25,6 +27,7 @@ class NewPost extends Component {
         const { title, text, author, category } = this.state
         this.props.dispatch(handleAddPost(title, text, author, category))
         this.props.change(false)
+        this.props.changePostId(null)
     }
 
     render() {
@@ -35,7 +38,7 @@ class NewPost extends Component {
 
         return (
             <div>
-                <h3 className='center'>Compose New Post</h3>
+                <h3 className='center'>{this.state.edit?'Edit Your Post!':'Compose New Post'}</h3>
                 <form className='new-post' onSubmit={this.handleSubmit}>
                     <label>
                         Name:
@@ -68,9 +71,10 @@ class NewPost extends Component {
 
 }
 
-const mapStateToProps = ({categories}) => {
+const mapStateToProps = ({categories, posts},{postId}) => {
     return {
-      categories: Object.values(categories)
+      categories: Object.values(categories),
+      post:posts[postId]
     }
   }
 export default connect(mapStateToProps)(NewPost)

@@ -69,10 +69,10 @@ export const disablePost = (postId) =>
     axios.delete(`/posts/${postId}`, { headers })
         .then((res) => res.data)
 
-async function editPost() {
 
-}
-
+export const editPostAPI = (post) =>
+    axios.put(`/posts/${post.id}`, {headers})
+        .then((res)=> res.data)
 async function incrementPostCommentCounter() {
 
 }

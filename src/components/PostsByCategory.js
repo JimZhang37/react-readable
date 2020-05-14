@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom'
 import '../stylesheets/posts.css'
 import { handleGetPostsByCategoryAndCategories, handleReceiveData } from '../actions/shared'
 
-function PostsByCategory() {
+function PostsByCategory({changePostId, change}) {
     const {category} = useParams()
     const dispatch = useDispatch()
     useEffect(() => {
@@ -37,7 +37,7 @@ function PostsByCategory() {
             <ul>
                 {posts.map(it =>
                     (<li key={it.id}>
-                        <Post post={it} />
+                        <Post post={it} changePostId={changePostId} change={change}/>
                     </li>)
                 )}
             </ul>

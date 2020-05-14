@@ -13,7 +13,6 @@ function App() {
             <Route exact path='/'><Posts /></Route>
             <Route path='/:category/:postId' component={PostContainer}></Route>
             <Route exact path='/:category'><Posts /></Route>
-
         </Router>
     );
 }

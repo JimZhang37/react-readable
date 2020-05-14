@@ -1,5 +1,5 @@
 import { RECEIVE_DATA, GET_POSTS_BY_CATEGORY_AND_CATEGORY } from '../actions/shared'
-import { ADD_POST, REMOVE_POST, UPVOTE_POST, DOWNVOTE_POST, GET_POST } from '../actions/posts'
+import { ADD_POST, REMOVE_POST, UPVOTE_POST, DOWNVOTE_POST, GET_POST, EDIT_POST } from '../actions/posts'
 import { ADD_COMMENT, REMOVE_COMMENT } from '../actions/comments'
 export default function posts(state = {}, action) {
     switch (action.type) {
@@ -62,7 +62,15 @@ export default function posts(state = {}, action) {
                     voteScore: state[action.postId].voteScore - 1
                 }
             }
-
+        case EDIT_POST:
+            return {
+                ...state,
+                [action.post.id]:{
+                    ...state[action.post.id],
+                    title:action.post.title,
+                    body:action.post.body
+                }
+            }
         default:
             return state
     }

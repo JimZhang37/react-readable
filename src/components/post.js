@@ -9,18 +9,20 @@ import { Link } from 'react-router-dom'
 import { handleUpvotePost, handleDownvotePost, handleRemovePost } from '../actions/posts'
 import { connect } from 'react-redux'
 
-function Post({ post, dispatch }) {
+function Post({ post, dispatch, changePostId, change }) {
     const { id, title, author, timestamp, category, voteScore, commentCount } = post
     const time = new Date(timestamp).toString()
     return (
-        <Link to={`/${category}/${id}`} className='post'>
+        <div className='post'>
             <div className='post-vote'>
                 <ArrowDropUpIcon onClick={(e) => { e.preventDefault(); dispatch(handleUpvotePost(id)) }} className='post-vote-icon' />
                 <p>{voteScore}</p>
                 <ArrowDropDownIcon onClick={(e) => { e.preventDefault(); dispatch(handleDownvotePost(id)) }} className='post-vote-icon' />
             </div>
             <div className='post-info'>
-                <div className='post-title'>{title}</div>
+                <Link to={`/${category}/${id}`} >
+                    <div className='post-title'>{title}</div>
+                </Link>
                 <div className='post-author'>{author}</div>
                 <div className='post-category'>{category}</div>
                 <div className='timestamp'>{time}</div>
@@ -32,10 +34,12 @@ function Post({ post, dispatch }) {
 
             </div>
             <div className='post-actions'>
-                <DeleteOutlineIcon onClick={(e)=> {e.preventDefault(); dispatch(handleRemovePost(post))}} className='post-vote-icon'/>
-                <EditIcon className='post-vote-icon'/>
+                <DeleteOutlineIcon onClick={(e) => { e.preventDefault(); dispatch(handleRemovePost(post)) }} className='post-vote-icon' />
+                <EditIcon className='post-vote-icon' onClick={(e) => { e.preventDefault(); changePostId(id); change(true) }} />
             </div>
-        </Link>
+        </div>
+
+
     )
 }
 
