@@ -103,9 +103,11 @@ async function disableCommentByParent() {
 export const disableCommentAPI = (commentId) =>
     axios.delete(`/comments/${commentId}`, {headers}).then((res) => res.data)
 
-async function editComment() {
 
-}
+
+export const editCommentAPI = (comment)=>
+    axios.put(`/comments/${comment.id}`, comment, {headers})
+        .then((res)=> res.data)
 
 export function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {

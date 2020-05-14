@@ -15,7 +15,7 @@ class Comment extends Component {
 
     render() {
         const { id, voteScore, body, author, timestamp } = this.props.comment
-        const { dispatch } = this.props
+        const { dispatch, edit } = this.props
         const time = new Date(timestamp).toString()
         return (
 
@@ -32,7 +32,7 @@ class Comment extends Component {
                 </div>
                 <div className='comment-actions'>
                     <DeleteOutlineIcon onClick={(e) => { e.preventDefault(); dispatch(handleDisableComment(this.props.comment)) }} className='comment-vote-icon' />
-                    <EditIcon className='comment-vote-icon' onClick={(e) => { e.preventDefault(); }} />
+                    <EditIcon className='comment-vote-icon' onClick={(e) => { e.preventDefault();edit(true) }} />
                 </div>
             </div>
 

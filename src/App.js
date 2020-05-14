@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 
 import { Route, BrowserRouter as Router } from 'react-router-dom'
-import NewPost from './components/NewPost';
 import Nav from './components/Nav'
 import PostContainer from './components/PostContainer'
 import Posts from './components/Posts'

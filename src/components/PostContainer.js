@@ -32,7 +32,7 @@ function PostContainer(){
         )
     }
     // console.log( 'posts', posts)
-    return (<div></div>)
+    return (<div>404</div>)
     
 }
 

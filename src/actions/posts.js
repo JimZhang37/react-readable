@@ -46,8 +46,8 @@ function editPost(post) {
     return {
         type: EDIT_POST,
         post
-        }
-    
+    }
+
 }
 
 
@@ -120,7 +120,10 @@ export function handleRemovePost(post) {
 export function handleGetPost(postId) {
     return (dispatch) => {
         return getPostAPI(postId).then((res) => {
-            dispatch(getPost(res))
+            if (Object.keys(res).length > 0) {
+                dispatch(getPost(res))
+
+            }
         }
 
         )
@@ -139,7 +142,7 @@ export function handleEditPost(id, title, body, author, category) {
         return editPostAPI(post).then((res) => dispatch(editPost(post))
 
         )
-        .catch((e)=>console.log(e))
+            .catch((e) => console.log(e))
 
     }
 }

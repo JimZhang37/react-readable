@@ -1,5 +1,5 @@
 import React, {  useEffect } from 'react'
-import Comment from './Comment'
+import CommentEditable from './CommentEditable'
 import { connect , useDispatch} from 'react-redux'
 import { handleReceiveComments } from '../actions/comments'
 import {useParams} from 'react-router-dom'
@@ -21,7 +21,7 @@ function Comments({ comments}) {
             <ul>
                 {sorted.map(it =>
                     (<li key={it.id}>
-                        <Comment comment={it} />
+                        <CommentEditable comment={it} />
                     </li>)
                 )}
             </ul>

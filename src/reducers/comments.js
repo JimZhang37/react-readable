@@ -1,4 +1,4 @@
-import {RECEIVE_COMMENTS, ADD_COMMENT, UPVOTE_COMMENT, DOWNVOTE_COMMENT, DISABLE_COMMENT} from '../actions/comments'
+import {RECEIVE_COMMENTS, ADD_COMMENT, UPVOTE_COMMENT, DOWNVOTE_COMMENT, DISABLE_COMMENT, EDIT_COMMENT} from '../actions/comments'
 
 
 export default function comments(state={}, action){
@@ -37,7 +37,13 @@ export default function comments(state={}, action){
                     voteScore: state[action.commentId].voteScore - 1
                 }
             }
-
+        case EDIT_COMMENT:
+            return {
+                ...state,
+                [action.comment.id]:{
+                    ...action.comment
+                }
+            }
         default:
             return state
     }

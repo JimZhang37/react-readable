@@ -1,10 +1,11 @@
-import { getCommentsByParent, addCommentApi, uuidv4, changeCommentVote, disableCommentAPI } from '../utils/api'
+import { getCommentsByParent, addCommentApi, uuidv4, changeCommentVote, disableCommentAPI,editCommentAPI } from '../utils/api'
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 // export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const UPVOTE_COMMENT = 'UPVOTE_COMMENT'
 export const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT'
 export const DISABLE_COMMENT = 'DISABLE_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
 
 export function receiveComments(comments) {
     return {
@@ -20,12 +21,12 @@ export function addComment(comment) {
     }
 }
 
-// export function removeComment(comment) {
-//     return {
-//         type: REMOVE_COMMENT,
-//         comment
-//     }
-// }
+export function editComment(comment) {
+    return {
+        type: EDIT_COMMENT,
+        comment
+    }
+}
 
 export function upvoteComment(commentId) {
     return {
@@ -115,5 +116,11 @@ export function handleDisableComment(comment) {
         dispatch(disableComment(comment))
         return disableCommentAPI(comment.id)
             .catch((e) => dispatch(addComment(comment)))
+    }
+}
+
+export function handleEditComment(comment){
+    return (dispatch)=>{
+        return editCommentAPI(comment).then((res)=>dispatch(editComment(comment)))
     }
 }
