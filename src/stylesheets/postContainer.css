@@ -1,0 +1,13 @@
+.post-container {
+    width: 100%;
+    max-width: 790px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.first-row{
+    display: flex;
+    flex-direction: row;
+}

@@ -139,7 +139,7 @@ export function handleEditPost(id, title, body, author, category) {
         author, category
     }
     return (dispatch) => {
-        return editPostAPI(post).then((res) => dispatch(editPost(post))
+        return editPostAPI(post).then((res) => dispatch(editPost(res))
 
         )
             .catch((e) => console.log(e))
