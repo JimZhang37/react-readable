@@ -4,7 +4,7 @@ import './App.css';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import Nav from './components/Nav'
 import PostContainer from './components/PostContainer'
-import Posts from './components/Posts'
+import Posts from './components/posts'
 function App() {
     return (
         <Router>

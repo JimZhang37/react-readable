@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PostsByCategory from './PostsByCategory'
 import NewPost from './NewPost'
-function Posts(props) {
+function Posts() {
 
     const [newPost, changeNew] = useState(false)
 
