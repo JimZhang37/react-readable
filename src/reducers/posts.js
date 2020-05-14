@@ -66,9 +66,7 @@ export default function posts(state = {}, action) {
             return {
                 ...state,
                 [action.post.id]:{
-                    ...state[action.post.id],
-                    title:action.post.title,
-                    body:action.post.body
+                    ...action.post
                 }
             }
         default:

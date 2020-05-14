@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAddPost } from '../actions/posts'
+import { handleAddPost, handleEditPost } from '../actions/posts'
 import { Redirect } from 'react-router-dom'
 import '../stylesheets/newPost.css'
 class NewPost extends Component {
@@ -8,7 +8,7 @@ class NewPost extends Component {
         super(props)
         const {post} = props
         this.state = {
-            edit:post?true:false,
+            id:post?post.id:null,
             title: post?post.title:'',
             text: post?post.body:'',
             category: post?post.category:'',
@@ -24,8 +24,8 @@ class NewPost extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        const { title, text, author, category } = this.state
-        this.props.dispatch(handleAddPost(title, text, author, category))
+        const { id, title, text, author, category } = this.state
+        this.props.dispatch(this.state.id?handleEditPost(id,title, text, author, category):handleAddPost(title, text, author, category))
         this.props.change(false)
         this.props.changePostId(null)
     }
@@ -38,7 +38,7 @@ class NewPost extends Component {
 
         return (
             <div>
-                <h3 className='center'>{this.state.edit?'Edit Your Post!':'Compose New Post'}</h3>
+                <h3 className='center'>{this.state.id?'Edit Your Post!':'Compose New Post'}</h3>
                 <form className='new-post' onSubmit={this.handleSubmit}>
                     <label>
                         Name:

@@ -71,7 +71,7 @@ export const disablePost = (postId) =>
 
 
 export const editPostAPI = (post) =>
-    axios.put(`/posts/${post.id}`, {headers})
+    axios.put(`/posts/${post.id}`,post, {headers})
         .then((res)=> res.data)
 async function incrementPostCommentCounter() {
 
