@@ -6,12 +6,13 @@ import '../stylesheets/newPost.css'
 class NewPost extends Component {
     constructor(props) {
         super(props)
-        const {post} = props
+        const {post, categories} = props
+        const defaultCategory = categories.length >0 ?categories[0].name: ''
         this.state = {
             id:post?post.id:null,
             title: post?post.title:'',
             text: post?post.body:'',
-            category: post?post.category:'',
+            category: post?post.category:defaultCategory,
             author: post?post.author:'',
         }
         this.handleChange = this.handleChange.bind(this)
