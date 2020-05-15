@@ -39,6 +39,6 @@ A few icons, like delete, edit, upvote, and etc. are used in this app.
 The api call is managed by axios. I don't think it is better than fetch, which is nativly supported by many broswers. I just happned to try this axios library to see what it offers.
 
 # More
-I think it is necessary to add unit test and stroy board in this app as it can increase the robusty and maintenability of this app.
+I think it is necessary to add unit test and story board in this app as it can increase the robusty and maintenability of this app.
 
 Additionally, to arrange the UI more beautifully is a must-do next time.
