@@ -12,7 +12,7 @@ export default function Nav() {
                     <NavLink className='menu__link' activeClassName='menu__active' exact to='/' >Home</NavLink>
                 </li>
                 
-                {categories.length > 0 ? categories.map(it => <li><NavLink to={`/${it.name}`} key={it.name} className='menu__link' activeClassName='menu__active'>{it.name}</NavLink></li>) : ''}
+                {categories.length > 0 ? categories.map(it => <li key={it.name}><NavLink to={`/${it.name}`}  className='menu__link' activeClassName='menu__active'>{it.name}</NavLink></li>) : ''}
 
             </ul>
         </nav>

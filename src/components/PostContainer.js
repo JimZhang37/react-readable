@@ -10,7 +10,7 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import EditIcon from '@material-ui/icons/Edit';
 import NewPost from './NewPost'
 function PostContainer() {
-    const { category, postId } = useParams();
+    const { postId } = useParams();
 
     const dispatch = useDispatch()
     useEffect(() => {
