@@ -55,7 +55,7 @@ function PostContainer() {
                 <p>body: {body}</p>
                 <p></p>
                 <button onClick={(e) => { e.preventDefault(); setNewComment(!newComment) }}>New Comment</button>
-                {newComment ? <NewComment postId={postId} /> : ''}
+                {newComment ? <NewComment postId={postId} edit={setNewComment}/> : ''}
 
                 <Comments postId={postId} />
             </div>
